@@ -1,10 +1,6 @@
 # ASP.NET Core 2.0 & Angular 5 (+) advanced starter - with Server-side prerendering (for Angular SEO)!
 
-## By [DevHelp.Online](http://www.DevHelp.Online)
-
-> Updated to the latest Angular 5.x
-
-> Note ServerTransferModule still in the works - fix coming soon
+> Updated to the latest Angular 5.0 - Note ServerTransferModule still in the works - fix coming soon
 
 <p align="center">
     <img src="./docs/architecture.png" alt="ASP.NET Core 2.0 Angular 5+ Starter" title="ASP.NET Core 2.0 Angular 5+ Starter">
