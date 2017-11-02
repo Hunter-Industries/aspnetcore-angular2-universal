@@ -59,18 +59,13 @@ module.exports = (env) => {
         ] : [
             // new BundleAnalyzerPlugin(),
             // Plugins that apply in production builds only
-            new AngularCompilerPlugin({
-              mainPath: path.join(__dirname, 'ClientApp/boot.browser.ts'),
-              tsConfigPath: './tsconfig.json',
-              entryModule: path.join(__dirname, 'ClientApp/app/app.module.browser#AppModule'),
-              exclude: ['./**/*.server.ts']
-            }),
-            new webpack.optimize.UglifyJsPlugin({
-                output: {
-                    ascii_only: true,
-                }
-            }),
-          ]),
+            new webpack.optimize.UglifyJsPlugin(),
+            new AotPlugin({
+                tsConfigPath: './tsconfig.json',
+                entryModule: path.join(__dirname, 'ClientApp/app/app.module.browser#AppModule'),
+                exclude: ['./**/*.server.ts']
+            })
+        ]),
         devtool: isDevBuild ? 'cheap-eval-source-map' : false,
         node: {
           fs: "empty"
@@ -90,8 +85,7 @@ module.exports = (env) => {
                 manifest: require('./ClientApp/dist/vendor-manifest.json'),
                 sourceType: 'commonjs2',
                 name: './vendor'
-            })
-        ].concat(isDevBuild ? [
+            }),
             new webpack.ContextReplacementPlugin(
               // fixes WARNING Critical dependency: the request of a dependency is an expression
               /(.+)?angular(\\|\/)core(.+)?/,
@@ -104,7 +98,6 @@ module.exports = (env) => {
               path.join(__dirname, 'src'),
               {}
             )
-        ] : [
             new webpack.optimize.UglifyJsPlugin({
                 mangle: false,
                 compress: false,
