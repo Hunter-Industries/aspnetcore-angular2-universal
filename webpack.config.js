@@ -60,7 +60,7 @@ module.exports = (env) => {
             // new BundleAnalyzerPlugin(),
             // Plugins that apply in production builds only
             new webpack.optimize.UglifyJsPlugin(),
-            new AotPlugin({
+            new AngularCompilerPlugin({
                 tsConfigPath: './tsconfig.json',
                 entryModule: path.join(__dirname, 'ClientApp/app/app.module.browser#AppModule'),
                 exclude: ['./**/*.server.ts']
@@ -107,10 +107,9 @@ module.exports = (env) => {
             }),
             // Plugins that apply in production builds only
             new AngularCompilerPlugin({
-              mainPath: path.join(__dirname, 'ClientApp/boot.server.PRODUCTION.ts'),
-              tsConfigPath: './tsconfig.json',
-              entryModule: path.join(__dirname, 'ClientApp/app/app.module.server#AppModule'),
-              exclude: ['./**/*.browser.ts']
+                tsConfigPath: './tsconfig.json',
+                entryModule: path.join(__dirname, 'ClientApp/app/app.module.server#AppModule'),
+                exclude: ['./**/*.browser.ts']
             })
         ]),
         output: {
