@@ -98,7 +98,10 @@ module.exports = (env) => {
               path.join(__dirname, 'src'),
               {}
             )
+<<<<<<< HEAD
+=======
         ].concat(isDevBuild ? [] : [
+>>>>>>> 35c336b6625ccbef405804cb99303656720c9b90
             new webpack.optimize.UglifyJsPlugin({
                 mangle: false,
                 compress: false,
